@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    // MARK: - Property
+    
+    // MARK: - Function
+    
+    // MARK: - Content
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -21,4 +27,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .preferredColorScheme(.dark)
 }
