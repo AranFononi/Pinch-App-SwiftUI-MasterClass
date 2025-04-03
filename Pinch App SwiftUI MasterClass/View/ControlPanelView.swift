@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ControlPanelView: View {
     @Binding var scale: CGFloat
-    var isAnimating: Bool
+    @Binding var isAnimating: Bool
     @Binding var offset: CGSize
     
     func resetImageState() {
@@ -72,5 +72,5 @@ struct ControlPanelView: View {
 #Preview {
     @Previewable @State var scale: CGFloat = 1
     @Previewable @State var offset: CGSize = .zero
-    ControlPanelView(scale: $scale, isAnimating: true, offset: $offset)
+    //ControlPanelView(scale: $scale, isAnimating: true, offset: $offset)
 }

@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
     @State private var imageOffset: CGSize = .zero
+    @State private var imageName: String = "magazine-front-cover"
     
     // MARK: - Function
     func resetImageState() {
@@ -28,16 +29,7 @@ struct ContentView: View {
             ZStack {
                 Color.clear
                 // MARK: - Page Image
-                Image("magazine-front-cover")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding()
-                    .shadow(color: .black.opacity(0.2), radius: 12, x: 2, y: 2)
-                    .opacity(isAnimating ? 1 : 0)
-                    .offset(x: imageOffset.width, y: imageOffset.height)
-                    .scaleEffect(imageScale)
-                    .animation(.linear(duration: 1), value: isAnimating)
+                ImageView(isAnimating: $isAnimating, offset: $imageOffset, scale: $imageScale, imageName: imageName)
                 // MARK: - Tap Gesture
                     .onTapGesture(count: 2) {
                         if imageScale == 1 {
@@ -79,7 +71,7 @@ struct ContentView: View {
                 alignment: .top
             )
             .overlay(
-                ControlPanelView(scale: $imageScale, isAnimating: isAnimating, offset: $imageOffset),
+                ControlPanelView(scale: $imageScale, isAnimating: $isAnimating, offset: $imageOffset),
                 alignment: .bottom
             )
         } // NavigationView
