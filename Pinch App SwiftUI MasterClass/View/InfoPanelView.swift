@@ -15,15 +15,21 @@ struct InfoPanelView: View {
     var body: some View {
         HStack {
          // MARK: - Hotsopt
-            Image(systemName: "circle.circle")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .frame(width: 30, height: 30)
-                .onLongPressGesture(minimumDuration: 1) {
-                    withAnimation(.easeOut) {
-                        isInfoPanelVisible.toggle()
+            ZStack {
+                Circle()
+                    .fill(.ultraThinMaterial)
+                    .frame(width: 45, height: 45)
+                Image(systemName: "circle.circle")
+                    .symbolRenderingMode(.hierarchical)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .symbolEffect(.breathe)
+                    .onLongPressGesture(minimumDuration: 1) {
+                        withAnimation(.easeOut) {
+                            isInfoPanelVisible.toggle()
+                        }
                     }
-                }
+            }
             
             Spacer()
         // MARK: - Info panel
