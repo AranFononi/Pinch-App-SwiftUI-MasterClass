@@ -51,6 +51,9 @@ struct ControlPanelView: View {
                     withAnimation(.spring()) {
                         if scale < 8 {
                             scale += 1
+                            if scale > 8 {
+                                scale = 8
+                            }
                         }
                     }
                 } label: {
