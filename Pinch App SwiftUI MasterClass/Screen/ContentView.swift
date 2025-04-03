@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     // MARK: - Property
-    @State private var isAnimating: Bool = false    
+    @State private var isAnimating: Bool = false
+    
     // MARK: - Function
     
     // MARK: - Content
