@@ -12,8 +12,9 @@ struct ContentView: View {
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
     @State private var imageOffset: CGSize = .zero
-    @State private var imageName: String = "magazine-front-cover"
+    @State private var pageIndex: Int = 1
     @State private var isDrawerOpen: Bool = false
+    let pages: [Page] = pagesData
     
     // MARK: - Function
     func resetImageState() {
@@ -23,6 +24,10 @@ struct ContentView: View {
         }
     }
     
+    func currentPage() -> String {
+        return pages[pageIndex - 1].imageName
+    }
+    
     // MARK: - Content
     
     var body: some View {
@@ -30,7 +35,7 @@ struct ContentView: View {
             ZStack {
                 Color.clear
                 // MARK: - Page Image
-                ImageView(isAnimating: $isAnimating, offset: $imageOffset, scale: $imageScale, imageName: imageName)
+                ImageView(isAnimating: $isAnimating, offset: $imageOffset, scale: $imageScale, imageName: currentPage())
                 // MARK: - Tap Gesture
                     .onTapGesture(count: 2) {
                         if imageScale == 1 {
@@ -111,6 +116,20 @@ struct ContentView: View {
                             }
                         }
                     // MARK: - Thumbnails
+                    ForEach(pages) { item in
+                        Image("thumb-\(item.imageName)")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80)
+                            .clipShape(RoundedRectangle(cornerRadius: 9))
+                            .shadow(radius: 4)
+                            .opacity(isDrawerOpen ? 1 : 0)
+                            .animation(.easeOut(duration: 0.5), value: isDrawerOpen)
+                            .onTapGesture {
+                                isAnimating = true
+                                pageIndex = item.id
+                            }
+                    }
                     Spacer()
                 }//: Drawer
                 .padding(EdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8))
