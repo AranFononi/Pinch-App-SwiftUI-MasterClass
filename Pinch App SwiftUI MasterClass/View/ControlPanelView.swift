@@ -59,7 +59,7 @@ struct ControlPanelView: View {
             }
             .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
             .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
             .opacity(isAnimating ? 1 : 0)
         }
         .padding(.bottom, 30)
