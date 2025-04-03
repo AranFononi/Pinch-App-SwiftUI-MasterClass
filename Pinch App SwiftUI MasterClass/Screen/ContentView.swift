@@ -77,7 +77,10 @@ struct ContentView: View {
             .overlay(
                 InfoPanelView(scale: imageScale, offset: imageOffset).padding(.horizontal).padding(.top, 30),
                 alignment: .top
-                
+            )
+            .overlay(
+                ControlPanelView(scale: $imageScale, isAnimating: isAnimating, offset: $imageOffset),
+                alignment: .bottom
             )
         } // NavigationView
         .navigationViewStyle(.stack)
